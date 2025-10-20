@@ -1,22 +1,12 @@
-
 // App.js
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Card from "./components/Card";
-import Footer from "./components/Footer";
+import Card from "./components/ProfileCard";
+import image from "./assets/image.png"
 
 function App() {
-  const style = { display: "flex", flexDirection: "column", justifyContent: "center", width: "40%" };
+  const skill = ["java","nodejs","react"];
   return (
     <div className="main">
-      <Header />
-      <Hero />
-      <main style={{style}}>
-        <Card title="componet" />
-        <Card title="state" />
-        <Card title="style" />
-      </main>
-      <Footer />
+      <Card title={"employe"} skills={skill} name={"beki"} avatarUrl={image} />
     </div>
   );
 }
