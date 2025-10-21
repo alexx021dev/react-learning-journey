@@ -1,8 +1,8 @@
 
 
-import  TeamCard from "./components/TeamCard.jsx";
+import TeamCard from "./components/TeamCard.jsx";
 import MemberCard from "./components/MemberCard.jsx";
-import Container from "./components/container.jsx";
+import Container from "./components/Container.jsx";
 import image from "./assets/image.png"
 
 export default function App() {
@@ -15,12 +15,30 @@ export default function App() {
       { name: "Tom", role: "Intern", avatar: "" }
     ]
   };
-  
+
+  /*<TeamCard members={team.members.map(member => member.name)} name={team.name} />
+    <MemberCard avatar={image} usersName="beki" role="ui developer" /> */
+
+
   return (
-    <Container>
-      <TeamCard members={team.member.map(member => member.name)} name={team.name}/>
-      <MemberCard avatar={image} usersName="beki" role="ui developer"/> 
-    </Container>
+    <>
+      <div className="store">
+        {team.members.map((member) => (
+          <Container key={member.role}>
+            <MemberCard
+              avatar={image}
+              usersName={member.name}
+              role={member.role}
+            />
+          </Container>
+        ))}
+        
+      </div>
+
+
+    </>
+
+
   );
 }
 
