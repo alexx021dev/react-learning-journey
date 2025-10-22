@@ -25,11 +25,7 @@ export default function App() {
       <div className="store">
         {team.members.map((member) => (
           <Container key={member.role}>
-            <MemberCard
-              avatar={image}
-              usersName={member.name}
-              role={member.role}
-            />
+              <TeamCard name={team.name} members={team.members} />
           </Container>
         ))}
         
