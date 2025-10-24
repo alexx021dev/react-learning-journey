@@ -1,38 +1,49 @@
 
+import React, { useState } from "react";
+import MemberList from "./MemberList";
 
-import React from "react";
-import { useState } from "react";
+export default function TeamCard({ teamName }) {
+  const [members, setMembers] = useState(["Alex", "Jordan"]);
 
-function MemberList({ members,clear }) {
-  const [show, setshow] = useState(true);
-  const [isVisible, setbutton] = useState("hide");
-  const list = Boolean(members);
-  const changeListState = () => {
-  setshow(!show);
-    if (isVisible === "show") {
-      setbutton("hide");
-    } else { setbutton("show"); }
-  }
-  const clearlist = clear;
+  const addMember = () => {
+    const newMember = `Recruit #${members.length + 1}`;
+    setMembers([...members, newMember]);
+  };
+
+  const clearMembers = () => setMembers([]);
+
   return (
-    <div>
-      { 
-         show ? (
-          <ul>
-            {members.map((member, index) => (
-              <li key={index}>{member}</li>
-            ))}
-          </ul>
-        ) : (
-          <p>No members yet</p>
-        )
-      }
-      <button onClick={changeListState}>{isVisible}</button>
-      {
-        show && <button onClick={clear}>reset</button>
-      }
+    <div style={styles.card}>
+      <h2>{teamName}</h2>
+      <p>Total Members: {members.length}</p>
+      <MemberList members={members} clear={clearMembers} />
+      {members.length > 0 ? (
+        <p style={{ color: "limegreen" }}>✅ Team ready!</p>
+      ) : (
+        <p style={{ color: "orange" }}>⚠️ Team empty — add members!</p>
+      )}
+      <button style={styles.button} onClick={addMember}>
+        ➕ Add Member
+      </button>
     </div>
   );
 }
 
-export default MemberList;
+const styles = {
+  card: {
+    border: "1px solid #ccc",
+    borderRadius: "12px",
+    padding: "1rem",
+    width: "250px",
+    background: "#222",
+    color: "white",
+  },
+  button: {
+    marginTop: "1rem",
+    padding: "0.5rem 1rem",
+    borderRadius: "8px",
+    border: "none",
+    background: "#61dafb",
+    cursor: "pointer",
+  },
+};
