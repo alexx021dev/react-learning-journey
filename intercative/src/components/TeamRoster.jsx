@@ -1,22 +1,38 @@
+import MemberList from "./MemberList";
+import FilterToggle from "./FilterToogle";
+import { useState } from "react";
 
 
-import React from "react";
+export default function TeamRoster() {
 
-export default function MemberList({ members, toogle }) {
+const [team, setTeam]  = useState(
+  [
+    {id : 1,name: "beki",active: true},
+    {id : 2,name: "lina",active: false},
+    {id : 3,name: "jhon",active: true}
+  ]
+);
+
+const [showActiveOnly, setShowActiveOnly] = useState(false);
+
+const visibleMembers = showActiveOnly
+? team.filter(m => m.active)
+: team
+
+const Toggle = (id) => {
+ setTeam(prev => {
+  prev.map((member) => {
+    member.id === id ? {...member, active : !member.active} : member
+  })
+ })
+}
+
   return (
     <div>
-      <ul>
-        {members.map((member, index) => (
-          <li key={`${member}-${index}`}>{member}</li>
-        ))}
-      </ul>
-      {members.length > 0 && (
-        <button onClick={clear} style={{ background: "red", color: "white" }}>
-          Reset Team
-        </button>
-      )}
+        <MemberList members={ team } toogle={ Toggle }/>
+        <FilterToggle showActiveOnly={ visibleMembers }  setShowActiveOnly={ Toggle }/>
     </div>
-  );
+  )
 }
 
 
