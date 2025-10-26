@@ -1,16 +1,19 @@
 
 
-export default function MemberList({ members, toogle }) {
+export default function MemberList({ members, Toggle }) {
   return (
     <ul>
-      {members.map(member => (
-        <li key={member.id}>
-          {member.name} – {member.active ? "Active" : "Inactive"}
-          <button onClick={() => toogle(member.id)}>Toggle</button>
-        </li>
-      ))}
+      {members &&
+        members.map(m => (
+          <li key={m.id}>
+            {m.name} - {m.active ? "Active" : "Inactive"}
+            <button onClick={() => Toggle(m.id)}>Toggle</button>
+          </li>
+        ))}
     </ul>
   );
 }
+
+
 
 

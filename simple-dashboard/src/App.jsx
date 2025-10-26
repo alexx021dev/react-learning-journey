@@ -3,7 +3,7 @@
 import TeamCard from "./components/TeamCard.jsx";
 import MemberCard from "./components/MemberCard.jsx";
 import Container from "./components/Container.jsx";
-import image from "./assets/image.png"
+
 
 export default function App() {
 
