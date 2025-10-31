@@ -27,6 +27,13 @@ export default function App() {
     setTeamName("");
 
   }
+  const removeMember = (id) => {
+  setMember(prev => prev.filter((_,index) => index !== id));
+  }
+  const handleEdit = (index,newName) => {
+    setMember(prev => prev.map((m,i) => i === index ? newName : m));
+  }
+
   return (
     <div style={styles.app}>
       <h1> Team Registeration Form </h1>
@@ -42,6 +49,8 @@ export default function App() {
       <TeamList
        members={member}
        teamname={teamName}
+       handleRemove={ removeMember }
+       onEdit={ handleEdit}
       />
 
     </div>
